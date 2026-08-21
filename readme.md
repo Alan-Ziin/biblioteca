@@ -5,7 +5,7 @@ Inicialmente, testarei o repositório para criação de um biblioteca virtual, u
 ## O que precisa para rodar o código?
 
 ```
-python main.py
+streamlit run app.py
 ```
 
 Por enquanto, apenas Python instalado em sua máquina.
