@@ -5,7 +5,7 @@ if "bookcase" not in st.session_state:
     st.session_state["bookcase"] = Library()
 
 if "error" not in st.session_state:
-    st.session_state["error"] = False
+    st.session_state["error"] = ""
 
 bookcase = st.session_state["bookcase"]
 
@@ -16,7 +16,7 @@ idOfBook = st.text_input("Id of Book: ", key="idNumber")
 textsInputs = [name_book, actor_of_book, year_publication, idOfBook]
 
 def buttonSubmit():
-    st.session_state['error'] = False
+    st.session_state['error'] = ""
     for i in textsInputs:
         if i == "":
             st.session_state['error'] = "Error, please filled the forms"
@@ -25,6 +25,7 @@ def buttonSubmit():
        int(year_publication)
     except:
         st.session_state['error'] = "Error, please write just number in Year"
+        return
         
     bookCreated = Book(name_book,actor_of_book,year_publication,idOfBook)
     bookcase.add_books(bookCreated)
@@ -35,7 +36,7 @@ def buttonSubmit():
 
 buttonForms = st.button("Confirm the Forms", on_click=buttonSubmit)
 
-if st.session_state['error'] is not "":
+if st.session_state['error']:
     st.write(st.session_state['error'])
 else:
     for i in bookcase.books:
